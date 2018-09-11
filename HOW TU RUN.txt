@@ -1,0 +1,11 @@
+Open console in this folder and run command with your site URL:
+
+casperjs --pre=config.js test --url="https://www.maxibike.pl/mb_pl/" tests/
+
+
+***
+If you get this error:
+CasperError: Can't find module underscore
+
+you need to run:
+npm install
