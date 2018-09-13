@@ -8,7 +8,8 @@ casper.test.begin('W3C Validation', function suite(test) {
         pageSource = this.getHTML();
     })
 
-    /*casper.thenOpen('https://validator.w3.org/#validate_by_input', function(){
+    /* Validate by input HTML
+    casper.thenOpen('https://validator.w3.org/#validate_by_input', function(){
         this.fill('#validate-by-input form', {
             'fragment': pageSource
         }, false);
@@ -16,17 +17,20 @@ casper.test.begin('W3C Validation', function suite(test) {
         this.waitForUrl('https://validator.w3.org/nu/#textarea');
         this.test.assertExist('#results');
     })*/
+
+     /* Validate by URL */
     casper.thenOpen('https://validator.w3.org/#validate_by_uri', function(){
         this.fill('#validate-by-uri form', {
             'uri': PAGE_URL
         }, false);
         this.click('#validate-by-uri form .submit');
-        this.test.assertExist('#results');
+        this.waitForUrl('https://validator.w3.org/nu/?doc=');
     })
 
     // Take screenshot
     casper.then(function(){
     	casper.capture('captures/wc3-result.png');
+        test.info('Screen z wynikiem walidacji zostal zapisany w: captures/wc3-result.png');
     })
 
     // Validation errors
